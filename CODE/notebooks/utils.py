@@ -1,4 +1,6 @@
 import climetlab as cml
+import xarray as xr
+import numpy as np
 
 def normalize(x):
     try:
@@ -48,3 +50,19 @@ def plot_rain(x):
             contour_shade_min_level = 1,
         ),
     )
+    
+def compute_weighted_rmse(da_fc, da_true, mean_dims=xr.ALL_DIMS):
+    """
+    Compute the RMSE with latitude weighting from two xr.DataArrays.
+    Args:
+        da_fc (xr.DataArray): Forecast. Time coordinate must be validation time.
+        da_true (xr.DataArray): Truth.
+        mean_dims: dimensions over which to average score
+    Returns:
+        rmse: Latitude weighted root mean squared error
+    """
+    error = da_fc - da_true
+    weights_lat = np.cos(np.deg2rad(error.lat))
+    weights_lat /= weights_lat.mean()
+    rmse = np.sqrt(((error)**2 * weights_lat).mean(mean_dims))
+    return rmse
