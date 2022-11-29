@@ -1,9 +1,12 @@
 import climetlab as cml
 
 def normalize(x):
-    mean = x.isel(time=slice(0, None, 10000)).mean().load()
-    std = x.isel(time=slice(0, None, 10000)).std().load()
-    return (x - mean)/std
+    try:
+        mean = x.isel(time=slice(0, None, 10000)).mean().load()
+        std = x.isel(time=slice(0, None, 10000)).std().load()
+        return (x - mean)/std
+    except:
+        return (x - x.mean().load())/x.std().load()
 
 def plot_temp(x):
     return cml.plot_map(
