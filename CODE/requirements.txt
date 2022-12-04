@@ -4,3 +4,4 @@ climetlab
 climetlab_weatherbench
 numexpr==2.7.3
 tensorflow==2.11.0
+matplotlib
