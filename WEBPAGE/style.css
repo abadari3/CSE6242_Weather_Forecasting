@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+h2 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+p {
+    margin: 0;
+    line-height: 1.5;
+}
+.section {
+    margin-bottom: 20px;
+}
+.bold {
+    font-weight: bold;
+}
+.read-more {
+    cursor: pointer;
+    color: blue;
+    text-align: right;
+    display:block;
+    position: relative;
+    z-index: 1;
+}
+#video {
+    margin: 1em auto;
+    width: 560px;
+}
+@media (max-width: 768px) {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+}
+.hidden {
+  display: none;
+  transition: display 0.5s;
+}
+.visible {
+  display: block;
+  transition: display 0.5s;
+}
